@@ -87,10 +87,10 @@ The client reads in User-Agent string(s) and then outputs either `Allow` or `Blo
 
 ### Running the client
 
-While you can run the client through cargo, it's a bit...verbose.
+While you can run the client through cargo, it's a bit...verbose. (`ARGUMENT` is the User-Agent string(s), separated by newlines)
 
 ```shell
-cargo run -r --bin client -- ARGUMENT  # where ARGUMENT is the User-Agent string(s), separated by newlines
+cargo run -r --bin client -- ARGUMENT
 ```
 
 It's probably easier to run the client by calling the binary directly:
