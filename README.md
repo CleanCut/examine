@@ -2,13 +2,13 @@
 
 Practice creating grpc services and clients with buf.build, Rust, and tonic.
 
-## The Task
+# The Task
 
 > You are implementing an API which must analyze an HTTP user agent and make a decision as to whether to block or allow it. If the user agent header is from a Safari browser, it should return a decision to block the request. If it is from a Firefox browser, it should allow the request.
 > 
 > Create a gRPC client and server in Rust or Go which implements a single endpoint that receives the user agent string, analyzes it, and returns the result. Create a terminal CLI which uses the client to call the API. Include appropriate tests and documentation.
 
-## Built-in Tests
+# Built-in Tests
 
 To run the built-in unit, integration, and doc tests, do:
 
@@ -20,14 +20,14 @@ cargo test
 - Unit tests are (also) in [`src/service.rs`](https://github.com/CleanCut/examine/blob/main/src/service.rs#L66-L88)
 - Integration tests are in [`tests/integration.rs`](https://github.com/CleanCut/examine/blob/main/tests/integration.rs)
 
-## Protobuf Definitions
+# Protobuf Definitions
 
 The (handwritten) protobuf file is in `proto/examine/v1/examine.proto`. `buf.build` was used to
 generate the code.
 
 - [Generated documentation for the `ExamineService` is hosted on a public `buf.build` repo.](https://buf.build/nathanstocks/examine)
 
-## Server
+# Server
 
 The code for the server binary is in [`src/bin/server.rs`](https://github.com/CleanCut/examine/blob/main/src/bin/server.rs), while the logic for the service it runs
 is in the library file [`src/service.rs`](https://github.com/CleanCut/examine/blob/main/src/service.rs).
@@ -81,7 +81,7 @@ grpcurl -plaintext -import-path ./proto -proto proto/examine/v1/examine.proto -d
 }
 ```
 
-## Client
+# Client
 
 The client reads in User-Agent string(s) and then outputs either `Allow` or `Block` for each input value, one per line.
 
