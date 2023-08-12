@@ -27,6 +27,14 @@ generate the code.
 
 - [Generated documentation for the `ExamineService` is hosted on a public `buf.build` repo.](https://buf.build/nathanstocks/examine)
 
+# Rust Library Documentation
+
+_Most_ of the documentation for this project is right here in this readme, but there is also some Rust API documentation available. View it by running the command locally:
+
+```shell
+cargo doc --no-deps --open
+```
+
 # Server
 
 The code for the server binary is in [`src/bin/server.rs`](https://github.com/CleanCut/examine/blob/main/src/bin/server.rs), while the logic for the service it runs
