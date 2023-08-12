@@ -35,7 +35,7 @@ is in the library file [`src/service.rs`](https://github.com/CleanCut/examine/bl
 To run the server you can do:
 
 ```shell
-cargo run -r --bin service
+cargo run -r --bin server
 
 # OR...
 
