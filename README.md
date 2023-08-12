@@ -36,29 +36,45 @@ To run the server you can do:
 
 ```shell
 cargo run -r --bin server
+```
 
-# OR...
+OR...
 
+```shell
 cargo build -r
 target/release/server
 ```
 
-To test the server in isolation using `grpcurl`, first run the server, and then run commands such as:
+To test the server in isolation using `grpcurl`, first run the server, and then run commands like the one below. (Replace `USER-AGENT-STRING` with the actual User-Agent value.)
+
 
 ```shell
-# The general form is this (replace USER-AGENT-STRING with the actual value)
 grpcurl -plaintext -import-path ./proto -proto proto/examine/v1/examine.proto -d '{"user_agent": "USER-AGENT-STRING"}' 127.0.0.1:8080 examine.v1.ExamineService/Examine
+```
 
-# Here is an example of supplying an actual Safari User-Agent
+Here is an example of supplying an actual Safari User-Agent.
+
+```shell
 grpcurl -plaintext -import-path ./proto -proto proto/examine/v1/examine.proto -d '{"user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15"}' 127.0.0.1:8080 examine.v1.ExamineService/Examine
+```
 
+...which outputs:
+
+```json
 {
   "action": "ACTION_BLOCK"
 }
+```
 
-# Here is an example of supplying an actual Firefox User-Agent
+Here is an example of supplying an actual Firefox User-Agent.
+
+```shell
 grpcurl -plaintext -import-path ./proto -proto proto/examine/v1/examine.proto -d '{"user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.5; rv:109.0) Gecko/20100101 Firefox/116.0"}' 127.0.0.1:8080 examine.v1.ExamineService/Examine
+```
 
+...which outputs
+
+```json
 {
   "action": "ACTION_ALLOW"
 }
