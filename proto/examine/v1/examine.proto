@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package examine.v1;
+
+// Action recommended to take against an actor's traffic
+enum Action {
+    // Unused
+    ACTION_UNSPECIFIED = 0;
+    // Block the actor's traffic
+    ACTION_BLOCK = 1;
+    // Allow the actor's traffic
+    ACTION_ALLOW = 2;
+}
+
+message ExamineRequest {
+    // The User-Agent header to examine.
+    //
+    // NOTE: In a non-toy project, this should probably be a separate ExamineInfo message which
+    // includes the user_agent field along with other relevant fields to examine.
+    string user_agent = 1;
+}
+
+message ExamineResponse {
+    // Action to take based on the analysis of the information
+    Action action = 1;
+}
+
+// Service to examine actor information and recommend actions to take
+service ExamineService {
+    // Based on actor information such as the User-Agent header, recommend an action such as
+    // blocking or allowing the actor's traffic.
+    rpc Examine(ExamineRequest) returns (ExamineResponse) {}
+}
