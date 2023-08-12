@@ -140,7 +140,7 @@ echo "user agent string 1\nuser agent string 2" | target/release/client -
 target/release/client - < somefile.txt
 ```
 
-# Safari User-Agent Example (via positional argument)
+### Safari User-Agent Example (via positional argument)
 
 ```shell
 target/release/client "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15"
@@ -152,7 +152,7 @@ target/release/client "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/
 Block
 ```
 
-# Firefox User-Agent Example (via stdin)
+### Firefox User-Agent Example (via stdin)
 
 ```shell
 echo "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.5; rv:109.0) Gecko/20100101 Firefox/116.0" | target/release/client -
@@ -164,7 +164,7 @@ echo "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.5; rv:109.0) Gecko/20100101 Fire
 Allow
 ```
 
-# Multiple User-Agents via a file
+### Multiple User-Agents via a file
 
 > This file is present in the repository if you would like to use it.
 
