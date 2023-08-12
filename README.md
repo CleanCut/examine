@@ -85,24 +85,34 @@ grpcurl -plaintext -import-path ./proto -proto proto/examine/v1/examine.proto -d
 
 The client reads in User-Agent string(s) and then outputs either `Allow` or `Block` for each input value, one per line.
 
-To run the client you can do:
+### Running the client
+
+While you can run the client through cargo, it's a bit...verbose.
 
 ```shell
 cargo run -r --bin client -- ARGUMENT  # where ARGUMENT is the User-Agent string(s), separated by newlines
+```
 
-# OR (...probably cleaner if you're running the command repeatedly)
+It's probably easier to run the client by calling the binary directly:
 
+```shell
 cargo build -r
 target/release/client ARGUMENT
 ```
 
-To test the client, first run the server using the instructions [above](#server), and then:
+### Client Usage
+
+> Note: First run the server using the instructions [above](#server)!
+
+For the client help output, pass in `-h`:
 
 ```shell
-# For help, pass in `-h`
-
 target/release/client -h
+```
 
+Which should output something like:
+
+```text
 `client` checks user agent string(s)and emits whether to Allow or Block for each one
 
 Usage: client <USER_AGENT>
@@ -113,33 +123,56 @@ Arguments:
 Options:
   -h, --help     Print help
   -V, --version  Print version
+```
 
-# The general form is:
-target/release/client ARGUMENT # where ARGUMENT is the User-Agent string(s), separated by newlines
+### Stdin
 
-# If you would rather pass your User-Agent string(s) via stdin, use `-` as the argument
+If you would rather pass your User-Agent string(s) via `stdin`, use `-` as the argument:
 
+```shell
+# One argument via pipe
 echo "some user agent" | target/release/client -
+
+# Multiple arguments via pipe
 echo "user agent string 1\nuser agent string 2" | target/release/client -
+
+# Any number of arguments via file
 target/release/client - < somefile.txt
+```
 
-# Here's an example of passing in an actual Safari User-Agent via positional argument
+# Safari User-Agent Example (via positional argument)
 
+```shell
 target/release/client "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15"
+```
 
+...which outputs:
+
+```text
 Block
+```
 
-# Here's an example of passing in an actual Firefox User-Agent via stdin
+# Firefox User-Agent Example (via stdin)
 
+```shell
 echo "Mozilla/5.0 (Macintosh; Intel Mac OS X 13.5; rv:109.0) Gecko/20100101 Firefox/116.0" | target/release/client -
+```
 
+...which outputs:
+
+```text
 Allow
+```
 
-# Here's an example of reading multiple User-Agents in via a file piped to stdin.
-# This file is present in the repository if you would like to use it.
+# Multiple User-Agents via a file
 
-target/release/client - < tests/user_agents.txt 
+> This file is present in the repository if you would like to use it.
 
+```shell
+target/release/client - < tests/user_agents.txt
+```
+
+```text
 Block
 Allow
 ```
