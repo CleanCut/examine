@@ -82,6 +82,21 @@ target/release/client ARGUMENT
 To test the client, first run the server using the instructions [above](#server), and then:
 
 ```shell
+# For help, pass in `-h`
+
+target/release/client -h
+
+`client` checks user agent string(s)and emits whether to Allow or Block for each one
+
+Usage: client <USER_AGENT>
+
+Arguments:
+  <USER_AGENT>  User-Agent string of the browser. Use `-` to indicate reading from stdin instead
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
 # The general form is:
 target/release/client ARGUMENT # where ARGUMENT is the User-Agent string(s), separated by newlines
 
